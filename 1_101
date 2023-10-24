@@ -26,4 +26,18 @@ lsspi
 4) Отключить звуковую карту.
 
 Драйверные модули ALSA
+lsmod | grep snd
+Пример:
+snd_intel8x0      33148  0                                          →Драйвер аудио контроллера
+snd_ac97_codec    92000  1 snd_intel8x0                             →Интерфейс аудио кодека
+ac97_bus          3104   1 snd_ac97_codec                           →Шина аудио кодека
+snd_pcm_oss       40512  0                                          →Эмуляция OSS
+snd_mixer_oss     16640  1 snd_pcm_oss                              →Управление громкостью OSS
+snd_pcm           73316  3 snd_intel8x0,snd_ac97_codec,snd_pcm_oss  →Уровень ядра
+snd_timer         22148  1 snd_pcm                                  →Уровень ядра
+snd               50820  6 snd_intel8x0,snd_ac97_codec,snd_pcm_oss, →Уровень ядра
+                          snd_mixer_oss,snd_pcm,snd_timer
+soundcore         8960   1 snd                                      →Уровень ядра
+snd_page_alloc    10344  2 snd_intel8x0,snd_pcm                     →Уровень ядра
+
 5) Выключить контроллер usb.
